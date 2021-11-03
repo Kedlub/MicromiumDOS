@@ -1,0 +1,22 @@
+/*
+	zkouška multiline
+	komentáře
+	možná
+	by
+	měl
+	jít
+	
+	nice
+*/
+console.write("Variable test");
+random(100) as int x;
+console.write("x is");
+console.write(x);
+random(100) as int test;
+console.write("Zde dvakrát vypíšu proměnnou test");
+console.write(test);
+console.write(test);
+random(100) as float test2;
+value("test") as string testStr;
+console.write("Testing a plus " + testStr);
+console.write("Nice, už funguje sčítání proměnných ke stringu, třeba x = " + x);

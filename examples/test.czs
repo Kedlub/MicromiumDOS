@@ -1,0 +1,12 @@
+vypiš("Ahoj světe");
+vypiš("Jak se máš");
+
+čekej(1000);
+
+vypiš("Čekal jsem 1 sekundu");
+záhlaví("Funguje i vlastní záhlaví");
+vypiš("Zkouška #1");
+//okno("text", počet milisekund)
+okno("Jednoduché okno", 1000);
+okno("V češtině :D", 2000);
+randomhloušek(100);

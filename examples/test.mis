@@ -1,0 +1,23 @@
+//console.write("text") - vypíše text, jak jednoduché že ?
+console.write("Hello World!");
+console.write("How are you?");
+console.write("This is my language test!");
+console.write("Waiting one second...");
+
+//wait(čas v milisekundách) - počká určitý počet milisekund
+wait(1000);
+
+console.write("One second passed! Trying two...");
+wait(2000);
+console.write("Does alerts work?");
+//console.alertbox("text", počet milisekund na jak dlouho zobrazit) - zobrazí alertbox, a pokud není počet milisekund nula, tak počká ten počet milisekund a potom alert box zavře
+console.alertbox("Trying alertbox!");
+console.write("What about titlebar?");
+wait(500);
+console.settitle("Custom titlebar!");
+wait(1000);
+console.write("Showing alertbox #1");
+console.alertbox("But alerts do not disappear :|", 2000)
+wait(1000);
+console.write("Showing alertbox #2);
+console.alertbox("But now they do :D", 2000);

@@ -1,0 +1,3 @@
+input("Hello, enter your name:") as string jmeno;
+random(99) as int rnd;
+console.write("[User " + rnd + "] Your name is " + jmeno);

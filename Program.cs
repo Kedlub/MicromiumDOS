@@ -18,8 +18,22 @@ namespace MicromiumDOS
             string exeDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             Directory.SetCurrentDirectory(exeDir);
 
-            ConsoleMode();
-            Console.ReadKey();
+            Utils.CreateListMenu("Test", new string[] { "Load", "Compile", "Very long test, that will...." });
+            Utils.ShowDialogBox("Pozor vyvolávači! Blablablablablablabla", Utils.DialogBoxType.RetryAbortCancel);
+
+            /*if (Utils.HasResource("script"))
+            {
+                //string metadata = Utils.ReadEmbeddedResource("metadata");
+                string code = Utils.ReadEmbeddedResource("script");
+
+                RunScript(code);
+            }
+            else
+            {
+                ConsoleMode();
+            }
+
+            Console.ReadKey();*/
         }
 
         static void ConsoleMode()
@@ -33,31 +47,38 @@ namespace MicromiumDOS
             System.Threading.Thread.Sleep(1000);
             Utils.Clear();
             Utils.DrawTitleBar($"MicromiumDOS - {fileName}");
+            string fileExt = fileName.Split('.')[1];
+            string code = File.ReadAllText($"{fileName}");
+            if (fileExt.ToLower() == "mis")
+            {
+                //MiSharpLiteParser.Parse(code);
+                RunScript(code);
+            }
+            /*else if (fileExt.ToLower() == "czs")
+            {
+                CzechSharpParser.Parse(code);
+            }
+            else if (fileExt.ToLower() == "nya")
+            {
+                NyaSharpParser.Parse(code);
+            }*/
+            else if (fileExt.ToLower() == "exe")
+            {
+                Utils.PrintSystemText("Nemůžu spustit EXE soubory! Copak vypadám jako Windows?", Utils.SystemInfoType.Error);
+            }
+            else
+            {
+                Utils.PrintSystemText("Nemůžu spustit tento typ souboru!", Utils.SystemInfoType.Error);
+            }
+        }
+
+        // Loads script and executes it using compatible parser
+        static void RunScript(string code)
+        {
             try
             {
                 var watch = System.Diagnostics.Stopwatch.StartNew();
-                string fileExt = fileName.Split('.')[1];
-                string code = File.ReadAllText($"{fileName}");
-                if (fileExt.ToLower() == "mis")
-                {
-                    MiSharpLiteParser.Parse(code);
-                }
-                /*else if (fileExt.ToLower() == "czs")
-                {
-                    CzechSharpParser.Parse(code);
-                }
-                else if (fileExt.ToLower() == "nya")
-                {
-                    NyaSharpParser.Parse(code);
-                }*/
-                else if (fileExt.ToLower() == "exe")
-                {
-                    Utils.PrintSystemText("Nemůžu spustit EXE soubory! Copak vypadám jako Windows?", Utils.SystemInfoType.Error);
-                }
-                else
-                {
-                    Utils.PrintSystemText("Nemůžu spustit tento typ souboru!", Utils.SystemInfoType.Error);
-                }
+                MiSharpLiteParser.Parse(code);
                 watch.Stop();
                 Utils.PrintSystemText("Konec programu! Čas běhu: " + watch.ElapsedMilliseconds / 1000f + "s", Utils.SystemInfoType.Info);
             }
